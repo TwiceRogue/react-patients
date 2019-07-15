@@ -66,3 +66,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+django-admin startproject service
+cd service
+python manage.py startapp server
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+
+### 'npm install axios --save'

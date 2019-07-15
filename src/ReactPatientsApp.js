@@ -16,7 +16,7 @@ class ReactPatientsApp extends Component {
             </div>
             <div className='col-md-10'>
                 <Navigation/>
-                <PatientsTable/>
+                <PatientsTable className = 'mainTable'/>
                 <Histograms/>
             </div>
             </div>

@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+.mainTable{
+  height: 600 px;
+  width: 1566 px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.cell{
+  width:80px;
+}
