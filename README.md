@@ -76,4 +76,7 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 
+
+ pip2 install djangorestframework==3.9.3
+
 ### 'npm install axios --save'

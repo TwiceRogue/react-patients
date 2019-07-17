@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from server.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^bbpApp/sayHello$', sayHello),
+    url(r'^bbpApp/bbpIndex$', showbbpIndex),
+    url(r'^showScatterGraph/$', showScatterGraph),
+    url(r'^fetchTableData/$', fetchTableData),
+    url(r'^fetchAllData/$', fetchAllData),
+    url(r'^showStoryLines/$', showStoryLines),
+    url(r'^database/',query_test),
+    url(r'^learnsvm/', learn_svm),
+    url(r'^editAttrWeight/', editAttrWeight),
 ]
