@@ -10,17 +10,21 @@ class TableRow extends Component {
 
     componentWillMount(){
         this.setState({rowID:this.props.rowID})
+        
     }
 
+    static defaultProps = {
+        patientData: []
+      }
 
 
     render(){
 
         const patientData = this.props.patientData
         const columnsCell = []
-        for(let i =0;i<this.state.columns;i++){
+        for(let i =0;i<this.props.columnsNumber;i++){
             columnsCell.push(
-                <Cell key = {i} rowID ={this.state.rowID} columnID ={i}/>
+                <Cell key = {i} rowID ={this.state.rowID} columnID ={i} patientColumnData = {this.props.patientData[i]}/>
             )
         }
         return(

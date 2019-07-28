@@ -79,4 +79,6 @@ python manage.py runserver
 
  pip2 install djangorestframework==3.9.3
 
+ pip2 install django-cors-headers
+
 ### 'npm install axios --save'

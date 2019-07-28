@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { tsImportEqualsDeclaration } from '@babel/types';
 
 
-class Cell extends Component {
+class HCell extends Component {
 
     constructor(props){
         super(props)
@@ -10,7 +10,7 @@ class Cell extends Component {
     }
 
     componentDidMount(){
-        this.setState({rowID:this.props.rowID,
+        this.setState({columnName:this.props.columnName,
                        columnID:this.props.columnID})
 
     }
@@ -21,8 +21,8 @@ class Cell extends Component {
 
         return(
             <td>
-            <div className = 'cell' >
-                {this.props.patientColumnData}
+            <div className = 'Hcell' >
+                {this.props.columnName}
             </div>
             </td>
         )
@@ -32,4 +32,4 @@ class Cell extends Component {
 
 }
 
-export default Cell
+export default HCell

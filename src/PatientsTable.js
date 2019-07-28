@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import TableHead from './TableHead'
 import TableRow from './TableRow';
 import { tsAnyKeyword } from '@babel/types';
+import { PassThrough } from 'stream';
 
 class PatientsTable extends Component{
     constructor(props){
@@ -11,7 +12,9 @@ class PatientsTable extends Component{
                       rowsNumber:50}
     }
 
-
+    static defaultProps = {
+      columnsNumber: 20
+    }
 
 
 
@@ -32,7 +35,7 @@ class PatientsTable extends Component{
         const tableTr = [] 
         for (var i=0;i<this.state.rowsNumber;i++) {
           tableTr.push( 
-           <TableRow key = {i} rowID = {i}/>
+           <TableRow key = {i} rowID = {i} patientData = {this.props.allPatientsData[i]} columnsNumber={this.props.columnsNumber}/>
           )
         }
 
@@ -40,7 +43,7 @@ class PatientsTable extends Component{
                 <div className={`table-box ${className}`}>
                   <table style={style}>
                     {/* 表头部分 */}
-                    <TableHead/>
+                    <TableHead headData = {this.props.allPatientsData} columnsNumber={this.props.columnsNumber} columnsInfo={this.props.columnsInfo} />
                     <tbody>
                       {
                         // dataSource.map((data, i) => {
