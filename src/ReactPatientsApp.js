@@ -20,8 +20,8 @@ class ReactPatientsApp extends Component {
     }
 
 
-    componentWillMount(){
-        console.log('componentWillMount~')
+    componentDidMount(){
+        console.log('componentDidMount~')
         axios({
             method: 'post',
             url:`${server}/database/`,
@@ -34,8 +34,9 @@ class ReactPatientsApp extends Component {
                 console.log(response)
                 console.log(response['data'][0])
                 this.setState({
-                    allPatientsData:response['data'][0],
-                    columnsInfo:response['data'][3]
+                    allPatientsData:response['data'][4],
+                    columnsInfo:response['data'][3],
+                    columnsCate:response['data'][6]
                 })
             })
             .catch((error)=>{
@@ -56,8 +57,8 @@ class ReactPatientsApp extends Component {
             </div>
             <div className='col-md-10'>
                 <Navigation/>
-                <PatientsTable className = 'mainTable' allPatientsData = {this.state.allPatientsData} columnsNumber = {this.state.allPatientsData[0].length} 
-                                columnsInfo = {this.state.columnsInfo}/>
+                <PatientsTable className = 'mainTable' allPatientsData = {this.state.allPatientsData} columnsNumber = {Object.keys(this.state.allPatientsData[0]).length} 
+                                columnsInfo = {this.state.columnsInfo} columnsCate={this.state.columnsCate}/>
                 <Histograms/>
             </div>
             </div>

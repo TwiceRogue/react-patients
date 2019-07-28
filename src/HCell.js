@@ -20,11 +20,11 @@ class HCell extends Component {
     render(){
 
         return(
-            <td>
+            <th>
             <div className = 'Hcell' >
                 {this.props.columnName}
             </div>
-            </td>
+            </th>
         )
 
     }

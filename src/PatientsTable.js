@@ -13,7 +13,8 @@ class PatientsTable extends Component{
     }
 
     static defaultProps = {
-      columnsNumber: 20
+      columnsNumber: 20,
+      columnsInfo:[{}]
     }
 
 
@@ -35,7 +36,8 @@ class PatientsTable extends Component{
         const tableTr = [] 
         for (var i=0;i<this.state.rowsNumber;i++) {
           tableTr.push( 
-           <TableRow key = {i} rowID = {i} patientData = {this.props.allPatientsData[i]} columnsNumber={this.props.columnsNumber}/>
+           <TableRow key = {i} rowID = {i} patientData = {this.props.allPatientsData[i]} columnsNumber={this.props.columnsNumber} columnsInfo={this.props.columnsInfo} 
+            columnsCate = {this.props.columnsCate}/>
           )
         }
 

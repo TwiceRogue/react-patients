@@ -24,9 +24,10 @@ class TableHead extends Component {
 
         return(
            <thead>
-                {
+                <tr>{
                     HeadCell
                 }
+                </tr>
            </thead>
         
         )
