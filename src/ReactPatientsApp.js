@@ -37,7 +37,8 @@ class ReactPatientsApp extends Component {
                     allPatientsData:response['data'][4],
                     columnsInfo:response['data'][3],
                     columnsCate:response['data'][6]
-                })
+                }) // 你拿到数据之后，又刷新了一次，所以就有两次了呀。。
+                  // 那我应该怎么写 will mount 的时候直接渲染数据么
             })
             .catch((error)=>{
                 // 处理请求出错的情况

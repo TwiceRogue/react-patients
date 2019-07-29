@@ -45,7 +45,11 @@ class PatientsTable extends Component{
                 <div className={`table-box ${className}`}>
                   <table style={style}>
                     {/* 表头部分 */}
-                    <TableHead headData = {this.props.allPatientsData} columnsNumber={this.props.columnsNumber} columnsInfo={this.props.columnsInfo} />
+                    <TableHead 
+                    headData = {this.props.allPatientsData} 
+                    columnsNumber={this.props.columnsNumber} 
+                    columnsInfo={this.props.columnsInfo} 
+                    columnsCate = {this.props.columnsCate}/>
                     <tbody>
                       {
                         // dataSource.map((data, i) => {

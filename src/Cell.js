@@ -7,35 +7,54 @@ class Cell extends Component {
 
     constructor(props){
         super(props)
-    
+        this.state = {
+            category: undefined
+        }
     }
+
+    static defaultProps = {
+        columnsInfo: [{}],
+        columnName:""    
+      }
+
 
     componentDidMount(){
-        this.setState({rowID:this.props.rowID,
-                       columnID:this.props.columnID,
-                       columnName:this.props.columnName,
-                       category:this.props.category,
-                       data:this.props.patientColumnData,
-                       columnsCate:this.props.columnsCate,
-                      
-                        });
-        
-       this.drawSVG.bind(this)()
+        const props = this.props
 
+        
+    //    console.log(this.props.columnName) 
+       this.drawSVG.bind(this)(props)   // 立即执行才会绘制
     }
 
+    componentWillReceiveProps(props) {
+        //debugger
+        this.drawSVG.bind(this)(props)   // 立即执行才会绘制
+    }
 
-    drawSVG(){
+    drawSVG(props){
+        this.setState({
+            rowID:props.rowID,
+            columnID:props.columnID,
+            columnName:props.columnName,
+            category:props.category,
+            data:props.patientColumnData,
+            columnsCate:props.columnsCate,
+            columnStage:props.columnStage,
+            visible: true
+        });
+
         var tr_width = 80
         var th_height = 20
+        var rect_r = 10
+        d3.select(this._rootNode).select('svg').remove()
         const svg = d3.select(this._rootNode).append("svg").attr("width", 80).attr("height", 20);
-        if(this.props.category=='numerical'){
+        if(props.category=='numerical'){
 
-        var rScale = d3.scaleLinear().range([0, tr_width]).domain([this.props.columnsCate["low"],this.props.columnsCate["high"]]);
+        var rScale = d3.scaleLinear().range([0, tr_width]).domain([props.columnsCate["low"],props.columnsCate["high"]]);
 
         svg.append("rect")
             .attr("class", "rectTable")
-            .attr("width", rScale(this.props.patientColumnData))
+            .attr("width", rScale(props.patientColumnData))
             .attr("height", th_height)
             .attr("rx", 3)
             .attr("ry", 3)
@@ -43,16 +62,16 @@ class Cell extends Component {
             .attr("fill",'orange')
             .attr("opacity",0.5);
         svg.append('text')
-            .text(this.props.patientColumnData.toFixed(2))
+            .text(props.patientColumnData.toFixed(2))
             .attr('fill', 'black')
-            .attr('x', rScale(this.props.patientColumnData))
+            .attr('x', rScale(props.patientColumnData))
             .attr('y', th_height / 2)
             .attr('text-anchor', 'right')
             .style('font-size', '10px')
             .attr('dy', 8);
 
         }
-        else if(this.props.category=='categorical'){
+        else if(props.category=='categorical'){
             svg.append("rect")
             .attr("class", "tableRect")
             .attr("x", 0)
@@ -60,6 +79,32 @@ class Cell extends Component {
             .attr("width", 10)
             .attr("height", 10)
             .attr("fill", 'orange');//localColorScale(query_patient[column_names[col]])
+
+            svg.append('text')
+            .text(props.patientColumnData).attr('fill', 'black')
+            .attr('x', rect_r * 1.5)
+            .attr('y', th_height / 2 - rect_r / 2)
+            .attr('text-anchor', 'left')
+            .style('font-size', '12px')
+            .attr('dy', 8);
+        }
+        else if(props.category == 'string'){
+
+            svg.append("text")
+            .attr("class", "textTable")
+            .text(props.patientColumnData) //
+            .attr('text-anchor', 'middle')
+            .attr("transform", "translate(" + tr_width / 2 + "," + th_height / 2 + ")")
+            
+        }
+
+        else {
+
+            svg.append("text")
+            .attr("class", "textTable")
+            .text(props.patientColumnData)
+            .attr('text-anchor', 'middle')
+            .attr("transform", "translate(" + tr_width / 2 + "," + th_height / 2 + ")");
         }
     }
 
@@ -67,11 +112,10 @@ class Cell extends Component {
         this._rootNode = componentNode;
     }
 
-    render(){
-
+    render() {
         return(
             <td>
-            <div className = 'cell' ref={this._setRef.bind(this)}>
+            <div className={`cell ${this.state.category}`} ref={this._setRef.bind(this)}>
                
             </div>
             </td>
