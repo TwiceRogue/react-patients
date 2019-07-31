@@ -81,4 +81,15 @@ python manage.py runserver
 
  pip2 install django-cors-headers
 
+npm i --save @fortawesome/fontawesome
+npm i --save @fortawesome/react-fontawesome
+npm i --save @fortawesome/free-solid-svg-icons
+ npm i --save @fortawesome/fontawesome-svg-core
+npm install --save-dev @fortawesome/fontawesome-free
+
+npm i --save @fortawesome/fontawesome-free-solid
+npm i --save @fortawesome/fontawesome-free-regular
+npm i --save @fortawesome/fontawesome-free-brands
+
+
 ### 'npm install axios --save'

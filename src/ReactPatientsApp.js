@@ -5,6 +5,7 @@ import StarChart from './StarChart'
 import Histograms from './Histograms'
 import Navigation from './Navigation'
 import axios from  'axios'
+import  "./index.css";
 
 axios.defaults.withCredentials = false;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -53,7 +54,10 @@ class ReactPatientsApp extends Component {
         return(
             <div>
             <div className='col-md-2'>
-                <AttrTable/>
+                <AttrTable className = 'attrTable panel' 
+                           columnsNumber = {Object.keys(this.state.allPatientsData[0]).length} 
+                           columnsInfo = {this.state.columnsInfo} 
+                           columnsCate={this.state.columnsCate}/>
                 <StarChart/>
             </div>
             <div className='col-md-10'>
