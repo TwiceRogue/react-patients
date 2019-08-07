@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as d3 from "d3";
+import {connect} from 'react-redux'
 import { tsImportEqualsDeclaration } from '@babel/types';
 
 
@@ -181,11 +182,11 @@ class HCell extends Component {
     render(){
 
         return(
-            <th>
+            <th className = {this.props.visible ? 'show-table-cell':'hidden'}>
             <div>
                 {this.props.columnName}
             </div>
-            <div className = 'Hcell' ref={this._setRef.bind(this)} >
+            <div className = {`Hcell`} ref={this._setRef.bind(this)} >
                 {/* <div>
                 this.props.columnName
                 </div> */}
@@ -197,5 +198,17 @@ class HCell extends Component {
 
 
 }
+
+
+function mapStateToProps(state,ownProps) {
+    console.log(state)
+    
+    return {    
+      visible: state.columnName==ownProps.columnName? state.visibility:true,
+      columnNameInvisible:state.columnName
+    }
+  }
+  
+HCell =  connect(mapStateToProps)(HCell)
 
 export default HCell

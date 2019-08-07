@@ -5,7 +5,8 @@ import Cell from './Cell'
 class TableRow extends Component {
     constructor(props){
         super(props)
-        this.state = {columns:20}
+        this.state = {columns:20,
+                      visible:true}
     }
 
     componentWillMount(){
@@ -36,7 +37,7 @@ class TableRow extends Component {
                          columnStage = {this.props.columnsCate[this.props.columnsInfo[i]['stage']]}/>
             )
         }
-        console.log(columnsCell)
+        //console.log(columnsCell)
         return(
            <tr>
                {columnsCell}

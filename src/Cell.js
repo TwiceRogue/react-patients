@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
+import { connect } from 'react-redux'
 import { tsImportEqualsDeclaration } from '@babel/types';
+import { faShower } from '@fortawesome/fontawesome-free-solid';
 
 
 class Cell extends Component {
@@ -114,10 +116,8 @@ class Cell extends Component {
 
     render() {
         return(
-            <td>
-            <div className={`cell ${this.state.category}`} ref={this._setRef.bind(this)}>
-               
-            </div>
+            <td className={this.props.visible ? 'show-table-cell':'hidden'}>
+            <div className={`cell ${this.state.category} `} ref={this._setRef.bind(this)}/>
             </td>
         )
 
@@ -126,4 +126,17 @@ class Cell extends Component {
 
 }
 
-export default Cell
+
+function mapStateToProps(state,ownProps) {
+    console.log(state)
+    
+    return {    
+      visible: state.columnName==ownProps.columnName ? state.visibility:true,
+      columnName:state.columnName
+    }
+  }
+  
+
+  
+  
+export default Cell = connect(mapStateToProps)(Cell)

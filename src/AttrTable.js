@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import  './index.css'
-
+import { connect } from 'react-redux'
+import Cell from './Cell'
 import {
     faEye
 } from '@fortawesome/fontawesome-free-solid'
@@ -23,12 +24,12 @@ class AttrTable extends Component{
       componentWillReceiveProps(props){
         var Visibility = {}
 
-        for(let i in props.columnsInfo){
-            if(i['attributename']!='id' && i['category']=='string'){
-                Visibility[i['attributename']] = false
+        for(let i=0;i< props.columnsInfo.length;i++){
+            if(props.columnsInfo[i]['attributename']!='id' && props.columnsInfo[i]['category']=='string'){
+                Visibility[props.columnsInfo[i]['attributename']] = false
             }
             else{
-                Visibility[i['attributename']] = true
+                Visibility[props.columnsInfo[i]['attributename']] = true
             }
         }
         this.setState({
@@ -52,7 +53,7 @@ class AttrTable extends Component{
                 </td>
                 <td className='attrTableTdNarrow'>
                     <div className = 'mytddivclass'>
-                        <FontAwesomeIcon icon={faEye} onClick={this.handleClickVisible.bind(this)}/>
+                        <FontAwesomeIcon icon={faEye} onClick={this.handleClickVisible.bind(this,attr['attributename'])} />
                     </div>
                 </td>
                 <td className='attrTableTdNarrow'>
@@ -79,8 +80,13 @@ class AttrTable extends Component{
         return attrTableHead
       }
 
-      handleClickVisible(){
-        console.log(this.state.Visibility)
+      handleClickVisible(columnName){
+        console.log(this.state)
+       
+        this.props.SetInvisible(false,columnName)
+        
+       
+
       }
 
 
@@ -101,5 +107,25 @@ class AttrTable extends Component{
     }
     
 }
+
+//需要渲染什么数据
+
+function mapStateToProps(state) {
+    return {
+      visibility: state.Visibility
+    }
+  }
+  
+//需要触发什么行为
+
+function mapDispatchToProps(dispatch) {
+    return {
+      SetInvisible: (visibility,columnName) => {dispatch({ type: 'setInvisible',columnName:columnName,visibility:visibility})}
+    }
+  }
+
+
+
+AttrTable = connect(mapStateToProps,mapDispatchToProps)(AttrTable)
 
 export default AttrTable

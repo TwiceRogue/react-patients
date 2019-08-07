@@ -73,3 +73,12 @@ code {
 .attrTr{
   width: 350px;
 }
+
+.show-table-cell{
+  display: table-cell;
+}
+
+
+.hidden{
+  display: none;
+}

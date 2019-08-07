@@ -74,4 +74,8 @@ class ReactPatientsApp extends Component {
 
 }
 
+
+
+
+
 export default ReactPatientsApp

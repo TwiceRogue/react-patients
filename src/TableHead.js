@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import HCell from './HCell';
-import { EACCES } from 'constants';
+import { connect } from 'react-redux'
 
 
 class TableHead extends Component {
@@ -37,7 +37,8 @@ class TableHead extends Component {
                 columnsInfo = {this.props.columnsInfo[i]} 
                 category = {this.props.columnsInfo[i]['category']}
                 eachColunmData = {eachColunmData[this.props.columnsInfo[i]['attributename']]}
-                columnsCate = {this.props.columnsCate[this.props.columnsInfo[i]['attributename']]}/>
+                columnsCate = {this.props.columnsCate[this.props.columnsInfo[i]['attributename']]}
+                className = {this.props.visible ? 'show-table-cell':'hidden'}/>
             )
         }
 
@@ -54,4 +55,16 @@ class TableHead extends Component {
 
 }
 
-export default TableHead
+
+function mapStateToProps(state,ownProps) {
+    console.log(state)
+    
+    return {    
+      visible: state.columnName==ownProps.columnName? state.visibility:true,
+      columnName:state.columnName
+    }
+  }
+  
+TableHead =  connect(mapStateToProps)(TableHead)
+
+export default TableHead 

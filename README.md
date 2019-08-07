@@ -92,4 +92,7 @@ npm i --save @fortawesome/fontawesome-free-regular
 npm i --save @fortawesome/fontawesome-free-brands
 
 
+npm install --save redux 
+npm install --save react-redux
+
 ### 'npm install axios --save'
