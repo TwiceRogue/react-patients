@@ -182,7 +182,7 @@ class HCell extends Component {
     render(){
 
         return(
-            <th className = {this.props.visible ? 'show-table-cell':'hidden'}>
+            <th className = {this.props.visibility ? 'show-table-cell':'hidden'}>
             <div>
                 {this.props.columnName}
             </div>
@@ -201,11 +201,11 @@ class HCell extends Component {
 
 
 function mapStateToProps(state,ownProps) {
-    console.log(state)
-    
+    //console.log(state)
+    const nowVisible = state.visibility[ownProps.columnName];
+    console.log(nowVisible)
     return {    
-      visible: state.columnName==ownProps.columnName? state.visibility:true,
-      columnNameInvisible:state.columnName
+        visibility: nowVisible
     }
   }
   

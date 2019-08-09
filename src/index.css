@@ -82,3 +82,16 @@ code {
 .hidden{
   display: none;
 }
+
+.mainTable{
+  height: 600px;
+  word-wrap: break-word; 
+  word-break: break-all;
+}
+
+.mainTableDiv{
+  overflow: auto;
+  height: 600px;
+  word-wrap: break-word; 
+  word-break: break-all;
+}

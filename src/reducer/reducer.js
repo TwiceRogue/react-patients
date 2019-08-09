@@ -9,8 +9,9 @@ const reducer = (state, action) => {
     
 
     switch (action.type) {
-        case 'setInvisible':
-            return {columnName:action.columnName, visibility:false};
+        case 'SetInvisible':
+            state.visibility = action.visibility
+            return {...state,visibility:state.visibility};
         default:
             return state;
     }

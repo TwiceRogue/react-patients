@@ -116,7 +116,7 @@ class Cell extends Component {
 
     render() {
         return(
-            <td className={this.props.visible ? 'show-table-cell':'hidden'}>
+            <td className={this.props.visibility ? 'show-table-cell':'hidden'}>
             <div className={`cell ${this.state.category} `} ref={this._setRef.bind(this)}/>
             </td>
         )
@@ -128,12 +128,12 @@ class Cell extends Component {
 
 
 function mapStateToProps(state,ownProps) {
-    console.log(state)
+    //console.log(state)
     
+    const nowVisible = state.visibility[ownProps.columnName];
     return {    
-      visible: state.columnName==ownProps.columnName ? state.visibility:true,
-      columnName:state.columnName
-    }
+      visibility: nowVisible
+    }   
   }
   
 

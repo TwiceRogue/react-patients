@@ -42,8 +42,8 @@ class PatientsTable extends Component{
         }
 
         return (
-                <div className={`table-box ${className}`}>
-                  <table style={style} >
+                <div className={`table-box mainTableDiv`}>
+                  <table style={style} className = {`${className}`} >
                     {/* 表头部分 */}
                     <TableHead 
                     headData = {this.props.allPatientsData} 

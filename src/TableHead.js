@@ -38,7 +38,7 @@ class TableHead extends Component {
                 category = {this.props.columnsInfo[i]['category']}
                 eachColunmData = {eachColunmData[this.props.columnsInfo[i]['attributename']]}
                 columnsCate = {this.props.columnsCate[this.props.columnsInfo[i]['attributename']]}
-                className = {this.props.visible ? 'show-table-cell':'hidden'}/>
+                className = {this.props.visibility ? 'show-table-cell':'hidden'}/>
             )
         }
 
@@ -57,11 +57,11 @@ class TableHead extends Component {
 
 
 function mapStateToProps(state,ownProps) {
-    console.log(state)
-    
+    // console.log(state)
+    const nowVisible = state.visibility[ownProps.columnName];
+    //console.log(nowVisible)
     return {    
-      visible: state.columnName==ownProps.columnName? state.visibility:true,
-      columnName:state.columnName
+        visibility: nowVisible
     }
   }
   

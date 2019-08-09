@@ -4,7 +4,7 @@ import  './index.css'
 import { connect } from 'react-redux'
 import Cell from './Cell'
 import {
-    faEye
+    faEye, faEyeSlash
 } from '@fortawesome/fontawesome-free-solid'
 import { exportSpecifier } from '@babel/types';
 
@@ -35,6 +35,7 @@ class AttrTable extends Component{
         this.setState({
             Visibility:Visibility
         })
+        this.props.SetInvisible(Visibility)
      
     }
 
@@ -53,7 +54,7 @@ class AttrTable extends Component{
                 </td>
                 <td className='attrTableTdNarrow'>
                     <div className = 'mytddivclass'>
-                        <FontAwesomeIcon icon={faEye} onClick={this.handleClickVisible.bind(this,attr['attributename'])} />
+                        <FontAwesomeIcon icon={this.state.Visibility[attr['attributename']]? faEye:faEyeSlash} onClick={this.handleClickVisible.bind(this,attr['attributename'])} />
                     </div>
                 </td>
                 <td className='attrTableTdNarrow'>
@@ -82,8 +83,13 @@ class AttrTable extends Component{
 
       handleClickVisible(columnName){
         console.log(this.state)
-       
-        this.props.SetInvisible(false,columnName)
+        let  nowVisibility = this.state.Visibility
+        nowVisibility[columnName] = !nowVisibility[columnName]
+        this.setState({
+            Visibility:nowVisibility
+        })
+
+        this.props.SetInvisible(nowVisibility)
         
        
 
@@ -120,7 +126,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-      SetInvisible: (visibility,columnName) => {dispatch({ type: 'setInvisible',columnName:columnName,visibility:visibility})}
+      SetInvisible: (visibility) => {dispatch({ type: 'SetInvisible',visibility:visibility})}
     }
   }
 
