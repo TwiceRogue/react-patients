@@ -61,7 +61,7 @@ class ReactPatientsApp extends Component {
                 <StarChart/>
             </div>
             <div className='col-md-10'>
-                <Navigation/>
+                <Navigation  columnsInfo = {this.state.columnsInfo}/>
                 <PatientsTable className = 'mainTable' allPatientsData = {this.state.allPatientsData} columnsNumber = {Object.keys(this.state.allPatientsData[0]).length} 
                                 columnsInfo = {this.state.columnsInfo} columnsCate={this.state.columnsCate}/>
                 <Histograms/>

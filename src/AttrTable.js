@@ -49,7 +49,7 @@ class AttrTable extends Component{
                 </td>
                 <td className='attrTableTdWide'>
                     <div className = 'mytddivclass' >
-                        {attr['category']}                        
+                        {attr['stage']}                        
                     </div>
                 </td>
                 <td className='attrTableTdNarrow'>
@@ -100,7 +100,7 @@ class AttrTable extends Component{
         
         
         return(
-            <div className={this.props.className}>
+            <div className= {`${this.props.className} panel` }>
                 <table className = 'tableAttr'>
                     <thead> 
                         <tr>{this.genHead(this.props)}</tr>
